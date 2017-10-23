@@ -20,6 +20,10 @@ fi
 if [ "$1" ]; then OS=$1; fi
 if [ "$2" ]; then ARCH=$2; fi
 
+if [ ! -e temp ]; then
+    mkdir temp
+fi
+
 case $OS in
 
     FreeBSD)
@@ -95,6 +99,10 @@ case $OS in
 	     LFLAGS="-Wl,-O2 -Wl,-s"
 	     TARGET="ALPHA_GNU_ASM"
 	elif [ $ARCH = "i386" ]
+	then CFLAGS="-Wall -O2"
+	     LFLAGS="-Wl,-O2 -Wl,-s"
+	     TARGET="I386_ASM"
+	elif [ $ARCH = "i686" ]
 	then CFLAGS="-Wall -O2"
 	     LFLAGS="-Wl,-O2 -Wl,-s"
 	     TARGET="I386_ASM"
